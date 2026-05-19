@@ -1,6 +1,6 @@
 # North Star Temperature Studio
 
-A multi-platform Flutter app for capturing, analyzing, and exporting temperature sensor data. Built around a streaming algorithm lab, session recording with on-device storage, and live charting; works against simulated sources or USB / serial hardware on Windows, macOS, Linux, Android, iOS, and the web.
+A multi-platform Flutter app for capturing, analyzing, and exporting temperature sensor data. Built around a streaming algorithm lab, session recording with on-device storage, and live charting; works against simulated sources or USB / serial hardware on Windows, macOS, Linux, Android, and the web.
 
 ## Project layout
 
@@ -31,7 +31,7 @@ dart run build_runner build --delete-conflicting-outputs
 Run on your platform of choice:
 
 ```
-flutter run -d windows    # or macos, linux, chrome, ios, or an Android device id
+flutter run -d windows    # or macos, linux, chrome, or an Android device id
 ```
 
 See [`app/README.md`](app/README.md) for the full per-platform command reference, smoke-test steps, and the wireless-debugging recipe for Android-with-USB-peripheral setups.

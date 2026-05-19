@@ -80,7 +80,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Temperature Studio'),
+        title: const Text('North Star Temperature Studio'),
         actions: [
           IconButton(
             tooltip: 'Lunar Lander',

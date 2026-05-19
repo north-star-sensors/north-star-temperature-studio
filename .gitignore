@@ -3,6 +3,7 @@
 *.log
 *.pyc
 *.swp
+*.tmp
 .DS_Store
 .atom/
 .build/
@@ -12,11 +13,19 @@
 .swiftpm/
 migrate_working_dir/
 
+# Environment / secrets
+.env
+.env.*
+.envrc
+
 # IntelliJ / IDE
 *.iml
 *.ipr
 *.iws
 .idea/
+
+# Claude Code per-user state
+.claude/
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
@@ -25,10 +34,10 @@ migrate_working_dir/
 
 # Flutter / Dart / Pub
 **/doc/api/
-**/ios/Flutter/.last_build_id
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
+.fvm/
 .pub-cache/
 .pub/
 .packages
@@ -52,6 +61,14 @@ app.*.map.json
 **/android/**/generated/
 **/android/**/intermediates/
 **/android/**/tmp/
+
+# macOS / Xcode
+**/macos/Flutter/.last_build_id
+**/macos/Flutter/ephemeral/
+**/Pods/
+xcuserdata/
+*.xcuserstate
+*.xcuserdatad
 
 # Desktop (Windows / Linux / macOS)
 **/ephemeral/

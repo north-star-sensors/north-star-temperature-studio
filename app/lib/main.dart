@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Temperature Studio',
+      title: 'North Star Temperature Studio',
       theme: buildLightTheme(),
       darkTheme: buildDarkTheme(),
       themeMode: ThemeMode.system,

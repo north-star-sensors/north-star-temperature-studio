@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "North Star Sensors" "\0"
-            VALUE "FileDescription", "Temperature Studio" "\0"
+            VALUE "FileDescription", "North Star Temperature Studio" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "temperature_studio" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2026 North Star Sensors. All rights reserved." "\0"
             VALUE "OriginalFilename", "temperature_studio.exe" "\0"
-            VALUE "ProductName", "Temperature Studio" "\0"
+            VALUE "ProductName", "North Star Temperature Studio" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

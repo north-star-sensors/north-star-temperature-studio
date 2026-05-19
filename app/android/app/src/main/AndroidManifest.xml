@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-feature android:name="android.hardware.usb.host" />
     <application
-        android:label="Temperature Studio"
+        android:label="North Star Temperature Studio"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

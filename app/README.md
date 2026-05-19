@@ -54,12 +54,6 @@ For Android hardware validation (USB serial):
 3. Confirm the device appears, connect, and verify incoming temperature values.
 4. Start/stop recording and verify data is stored in session history.
 
-### iOS (macOS only)
-
-```
-flutter run -d ios
-```
-
 ### Web
 
 ```
