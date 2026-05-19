@@ -31,8 +31,12 @@ dependencies:
   flutter:
     sdk: flutter
   
-  # State Management
-  flutter_riverpod: ^2.5.1
+  # State Management.
+  # Pinned to 2.x: Riverpod 3.x requires source_gen >=3.0.0, but
+  # isar_generator 3.1.0+1 pins source_gen ^1.2.2. Even riverpod_generator
+  # >=2.6.4 wants source_gen ^2.0.0. Revisit when Isar 4 (or a community
+  # fork with loosened constraints) is adopted.
+  flutter_riverpod: ^2.6.1
   riverpod_annotation: ^2.3.5
 
   # Database
@@ -44,7 +48,7 @@ dependencies:
   usb_serial: ^0.5.0
 
   # Charts
-  fl_chart: ^0.68.0
+  fl_chart: ^1.2.0
 
   # Audio
   flutter_soloud: ^3.4.10
@@ -55,7 +59,7 @@ dependencies:
   cupertino_icons: ^1.0.8
 
   # Export
-  csv: ^6.0.0
+  csv: ^8.0.0
   excel: ^4.0.6
   file_selector: ^1.0.3
 

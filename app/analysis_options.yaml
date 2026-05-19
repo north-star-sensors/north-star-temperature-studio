@@ -9,6 +9,15 @@
 # packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  exclude:
+    # Generated code (Riverpod, Isar, Mockito). We don't author these; the
+    # ref-type deprecation warnings from riverpod 2.6 can't be fixed without
+    # bumping to Riverpod 3.x, which is blocked by isar_generator's pin on
+    # source_gen 1.x.
+    - "**/*.g.dart"
+    - "**/*.mocks.dart"
+
 linter:
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`

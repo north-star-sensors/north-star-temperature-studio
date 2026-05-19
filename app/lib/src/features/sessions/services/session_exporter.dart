@@ -43,7 +43,7 @@ Uint8List buildSessionCsv(SessionExportData data) {
     ]);
   }
 
-  final csvText = const ListToCsvConverter(eol: '\n').convert(rows);
+  final csvText = Csv(lineDelimiter: '\n').encode(rows);
   return Uint8List.fromList(utf8.encode('$_utf8Bom$csvText\n'));
 }
 
