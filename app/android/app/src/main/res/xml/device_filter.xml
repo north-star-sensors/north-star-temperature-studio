@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- STM32 only: standard PID and new PID -->
+    <usb-device vendor-id="1155" product-id="22336" /> <!-- VID 0x0483, PID 0x5740 -->
+    <usb-device vendor-id="1155" product-id="42346" /> <!-- VID 0x0483, PID 0xA56A -->
+
+    <!-- Others disabled -->
+    <!-- FTDI -->
+    <!-- <usb-device vendor-id="1027" /> --> <!-- 0x0403 -->
+    <!-- Prolific -->
+    <!-- <usb-device vendor-id="1659" /> --> <!-- 0x067B -->
+    <!-- Silabs (CP210x) -->
+    <!-- <usb-device vendor-id="4292" /> --> <!-- 0x10C4 -->
+    <!-- Qinheng (CH34x) -->
+    <!-- <usb-device vendor-id="6790" /> --> <!-- 0x1A86 -->
+    <!-- Arduino (Various) -->
+    <!-- <usb-device vendor-id="9025" /> --> <!-- 0x2341 -->
+    <!-- CDC-ACM Class (Generic) -->
+    <!-- <usb-device class="2" /> -->
+</resources>
