@@ -25,7 +25,7 @@ class _LunarLanderPageState extends ConsumerState<LunarLanderPage>
   Duration _lastElapsed = Duration.zero;
   late LunarLanderState _gameState;
 
-  /// Continuous thrust 0.0â€“1.0.
+  /// Continuous thrust 0.0–1.0.
   /// Driven by sensor levelNorm, or 1.0 while screen is tapped.
   double _thrustLevel = 0.0;
   bool _tapHeld = false;
@@ -75,7 +75,7 @@ class _LunarLanderPageState extends ConsumerState<LunarLanderPage>
       _gameState = _engine.update(_gameState, dt, _thrustLevel);
     });
 
-    // Game just ended â€” engine already updated highScore in state
+    // Game just ended — engine already updated highScore in state
     if (_gameState.phase == LunarLanderPhase.landed ||
         _gameState.phase == LunarLanderPhase.crashed) {
       _ticker.stop();
@@ -138,7 +138,7 @@ class _LunarLanderPageState extends ConsumerState<LunarLanderPage>
         return;
       }
 
-      // Reset from ended states â€” but only after cooldown so player sees score
+      // Reset from ended states — but only after cooldown so player sees score
       if ((_gameState.phase == LunarLanderPhase.landed ||
               _gameState.phase == LunarLanderPhase.crashed) &&
           sensorLevel > 0.15) {

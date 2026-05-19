@@ -28,7 +28,7 @@ class GamePainter extends CustomPainter {
     if (state.phase == GamePhase.waiting) {
       _drawCenterText(canvas, size, 'Tap to Start!', subtitle: 'or press the sensor button');
     } else if (state.phase == GamePhase.gameOver) {
-      _drawCenterText(canvas, size, 'Game Over', subtitle: 'Score: ${state.score}  â€¢  Tap to retry');
+      _drawCenterText(canvas, size, 'Game Over', subtitle: 'Score: ${state.score}  •  Tap to retry');
     }
   }
 
@@ -89,8 +89,8 @@ class GamePainter extends CustomPainter {
     final x = KonaGameEngine.konaX;
     final baseY = groundY - kona.y;
 
-    // 2-segment legs with knees â€” simple trot cycle
-    final phase = kona.runFrame * pi / 2; // smooth 0..2Ï€ over one runFrame cycle
+    // 2-segment legs with knees — simple trot cycle
+    final phase = kona.runFrame * pi / 2; // smooth 0..2π over one runFrame cycle
     final farLegPaint = Paint()
       ..color = const Color(0xFF6B2A12)
       ..strokeWidth = 4
@@ -100,7 +100,7 @@ class GamePainter extends CustomPainter {
       ..strokeWidth = 4
       ..strokeCap = StrokeCap.round;
 
-    // Body bottom edge: body rect is (x+4, baseY-36, 40, 24) â†’ bottom at baseY-12
+    // Body bottom edge: body rect is (x+4, baseY-36, 40, 24) → bottom at baseY-12
     const bodyBottom = -12.0;
     final backHipX = x + 12.0;
     final backHipY = baseY + bodyBottom;
@@ -133,7 +133,7 @@ class GamePainter extends CustomPainter {
       frontFootFy = footY;
     }
 
-    // Far-side legs (drawn first, behind body) â€” opposite phase from near-side
+    // Far-side legs (drawn first, behind body) — opposite phase from near-side
     _drawJointedLeg(canvas, farLegPaint, backHipX, backHipY,
         backHipX - backFootDx, backFootFy, 8, 8, true);
     _drawJointedLeg(canvas, farLegPaint, frontHipX, frontHipY,
@@ -185,7 +185,7 @@ class GamePainter extends CustomPainter {
       Paint()..color = const Color(0xFF2C1810),
     );
 
-    // Tongue (cute detail â€” only while running, not jumping)
+    // Tongue (cute detail — only while running, not jumping)
     if (!kona.isJumping) {
       final tonguePaint = Paint()..color = const Color(0xFFFF6B8A);
       canvas.drawOval(Rect.fromLTWH(x + 50, baseY - 28, 4, 6), tonguePaint);
@@ -218,7 +218,7 @@ class GamePainter extends CustomPainter {
     if (dist > maxReach) dist = maxReach; // clamp to avoid NaN
     if (dist < 0.1) dist = 0.1;
 
-    // Law of cosines: angle at hip between (hipâ†’foot) line and upper leg
+    // Law of cosines: angle at hip between (hip→foot) line and upper leg
     final cosA = ((upperLen * upperLen + dist * dist - lowerLen * lowerLen) /
             (2 * upperLen * dist))
         .clamp(-1.0, 1.0);

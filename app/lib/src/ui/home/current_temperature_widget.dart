@@ -66,7 +66,7 @@ class _CurrentTemperatureWidgetState
             ),
             const SizedBox(height: 8),
             Text(
-              '${_currentValue!.toStringAsFixed(2)}Â°C',
+              '${_currentValue!.toStringAsFixed(2)}°C',
               style: TextStyle(
                 fontSize: 48,
                 fontWeight: FontWeight.bold,

@@ -93,7 +93,7 @@ class _KonaGamePageState extends ConsumerState<KonaGamePage>
 
   @override
   Widget build(BuildContext context) {
-    // Listen for sensor button presses (falseâ†’true transition)
+    // Listen for sensor button presses (false→true transition)
     ref.listen<AlgorithmLabState>(algorithmLabControllerProvider,
         (previous, next) {
       if (previous != null && !previous.buttonIsPressed && next.buttonIsPressed) {

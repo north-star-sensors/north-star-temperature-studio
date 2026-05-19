@@ -8,8 +8,8 @@ class LunarLanderEngine {
   final Random _random;
 
   // Physics
-  static const double gravity = 1.62; // m/sÂ² (real lunar gravity)
-  static const double thrustAccel = 3.5; // m/sÂ² (~2.16Ã— gravity)
+  static const double gravity = 1.62; // m/s² (real lunar gravity)
+  static const double thrustAccel = 3.5; // m/s² (~2.16× gravity)
   static const double startAltitude = 100.0;
   static const double startVelocity = -2.0; // slight initial descent
 
@@ -17,8 +17,8 @@ class LunarLanderEngine {
   static const double fuelBurnRate = 0.08; // per second (~12.5 s total)
 
   // Landing thresholds
-  static const double safeLandingSpeed = 2.0; // m/s â€” soft landing
-  static const double hardLandingSpeed = 4.0; // m/s â€” survived but rough
+  static const double safeLandingSpeed = 2.0; // m/s — soft landing
+  static const double hardLandingSpeed = 4.0; // m/s — survived but rough
 
   // Scoring
   static const int landingBaseScore = 100;
@@ -49,7 +49,7 @@ class LunarLanderEngine {
         landingVelocity: 0.0,
       );
 
-  /// [thrustLevel] is 0.0â€“1.0: continuous thrust from sensor (levelNorm)
+  /// [thrustLevel] is 0.0–1.0: continuous thrust from sensor (levelNorm)
   /// or 1.0 when tapping the screen.
   LunarLanderState update(
     LunarLanderState state,

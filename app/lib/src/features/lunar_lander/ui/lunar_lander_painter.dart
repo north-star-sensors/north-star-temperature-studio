@@ -259,7 +259,7 @@ class LunarLanderPainter extends CustomPainter {
       14,
     );
 
-    // Velocity â€” color-coded
+    // Velocity — color-coded
     final speed = lander.velocity.abs();
     final velColor = speed <= LunarLanderEngine.safeLandingSpeed
         ? const Color(0xFF66FF66)
@@ -367,7 +367,7 @@ class LunarLanderPainter extends CustomPainter {
           canvas,
           size,
           'LUNAR LANDER',
-          subtitle: 'Hold to thrust  â€¢  Land softly',
+          subtitle: 'Hold to thrust  •  Land softly',
           subtitleLine2: 'Tap or use sensor to start',
         );
       case LunarLanderPhase.landed:
@@ -380,8 +380,8 @@ class LunarLanderPainter extends CustomPainter {
           titleColor: const Color(0xFF66FF66),
           subtitle:
               'Velocity: ${state.landingVelocity.toStringAsFixed(1)} m/s'
-              '  â€¢  Fuel: ${(state.lander.fuel * 100).toStringAsFixed(0)}%',
-          subtitleLine2: 'Score: ${state.score}  â€¢  Tap to play again',
+              '  •  Fuel: ${(state.lander.fuel * 100).toStringAsFixed(0)}%',
+          subtitleLine2: 'Score: ${state.score}  •  Tap to play again',
         );
       case LunarLanderPhase.crashed:
         _drawCenterText(

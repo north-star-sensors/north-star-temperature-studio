@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:temperature_studio/src/database/models/measurement_models.dart';
@@ -21,14 +23,56 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
+  static const Duration _autoScanInterval = Duration(seconds: 2);
+
   List<String> _devices = [];
   String? _selectedDevice;
   bool _isLoadingDevices = false;
+  Timer? _autoScanTimer;
 
   @override
   void initState() {
     super.initState();
     _scanDevices();
+    _autoScanTimer = Timer.periodic(_autoScanInterval, (_) => _autoScan());
+  }
+
+  @override
+  void dispose() {
+    _autoScanTimer?.cancel();
+    super.dispose();
+  }
+
+  Future<void> _autoScan() async {
+    if (!mounted || _isLoadingDevices) return;
+    final recordingData = ref.read(recordingServiceProvider).value;
+    if ((recordingData?.isConnected ?? false)) return;
+    try {
+      final hardware = ref.read(serialHardwareProvider);
+      final devices = await hardware.getDevices();
+      if (!mounted) return;
+      if (_devicesEqual(devices, _devices)) return;
+      setState(() => _applyDeviceList(devices));
+    } catch (_) {
+      // Silent — manual refresh still surfaces errors.
+    }
+  }
+
+  void _applyDeviceList(List<String> devices) {
+    _devices = devices;
+    if (_selectedDevice != null && !devices.contains(_selectedDevice)) {
+      _selectedDevice = devices.isNotEmpty ? devices.first : null;
+    } else if (_selectedDevice == null && devices.isNotEmpty) {
+      _selectedDevice = devices.first;
+    }
+  }
+
+  bool _devicesEqual(List<String> a, List<String> b) {
+    if (a.length != b.length) return false;
+    for (var i = 0; i < a.length; i++) {
+      if (a[i] != b[i]) return false;
+    }
+    return true;
   }
 
   Future<void> _stopAndOfferExport(RecordingSession? session) async {
@@ -52,12 +96,8 @@ class _HomePageState extends ConsumerState<HomePage> {
     try {
       final hardware = ref.read(serialHardwareProvider);
       final devices = await hardware.getDevices();
-      setState(() {
-        _devices = devices;
-        if (devices.isNotEmpty && _selectedDevice == null) {
-          _selectedDevice = devices.first;
-        }
-      });
+      if (!mounted) return;
+      setState(() => _applyDeviceList(devices));
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(

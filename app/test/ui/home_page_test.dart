@@ -25,7 +25,7 @@ void main() {
     // _scanDevices calls setState async.
     await tester.pumpAndSettle();
 
-    verify(mockHardware.getDevices()).called(1);
+    verify(mockHardware.getDevices()).called(greaterThanOrEqualTo(1));
 
     expect(find.text('COM1'), findsOneWidget);
     expect(find.text('Connect'), findsOneWidget);
