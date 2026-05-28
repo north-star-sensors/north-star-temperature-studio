@@ -12,7 +12,12 @@ part 'recording_service.g.dart';
 class RecordingData {
   final bool isConnected;
   final RecordingSession? session;
-  const RecordingData({this.isConnected = false, this.session});
+  final int markerCount;
+  const RecordingData({
+    this.isConnected = false,
+    this.session,
+    this.markerCount = 0,
+  });
 
   bool get isRecording => session != null;
 }
@@ -96,6 +101,30 @@ class RecordingService extends _$RecordingService {
     state = AsyncData(RecordingData(isConnected: true, session: session));
   }
 
+  /// Drops a timeline marker on the active session. No-op when not recording.
+  Future<void> addMarker(String label) async {
+    final session = _currentSession;
+    if (session == null) return;
+
+    final db = await ref.read(databaseServiceProvider.future);
+    final marker = SessionMarker()
+      ..sessionId = session.id
+      ..timestamp = DateTime.now()
+      ..label = label;
+    await db.saveMarker(marker);
+
+    final current = state.value;
+    if (current != null) {
+      state = AsyncData(
+        RecordingData(
+          isConnected: current.isConnected,
+          session: current.session,
+          markerCount: current.markerCount + 1,
+        ),
+      );
+    }
+  }
+
   Future<void> stopRecording() async {
     if (_currentSession == null) return;
 
@@ -141,13 +170,13 @@ class RecordingService extends _$RecordingService {
     }
   }
 
-  void _startFlushTimer(DatabaseService db) {
+  void _startFlushTimer(Database db) {
     _flushTimer = Timer.periodic(_maxBufferTime, (_) {
       _flushBuffer(db);
     });
   }
 
-  Future<void> _flushBuffer(DatabaseService db) async {
+  Future<void> _flushBuffer(Database db) async {
     if (_buffer.isEmpty) return;
     final readingsToSave = List<TemperatureReading>.from(_buffer);
     _buffer.clear();

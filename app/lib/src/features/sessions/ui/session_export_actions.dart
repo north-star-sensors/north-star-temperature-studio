@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:file_selector/file_selector.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../database/database_service.dart';
 import '../../../database/models/measurement_models.dart';
 import '../services/session_exporter.dart';
+import 'export_saver_io.dart'
+    if (dart.library.js_interop) 'export_saver_web.dart';
 
 Future<void> pickFormatAndExport(
   BuildContext context,
@@ -52,34 +51,26 @@ Future<void> _exportSession(
 ) async {
   final messenger = ScaffoldMessenger.of(context);
 
-  final FileSaveLocation? location;
-  try {
-    location = await getSaveLocation(
-      suggestedName: suggestedFileName(session, format),
-      acceptedTypeGroups: [
-        XTypeGroup(label: format.toUpperCase(), extensions: [format]),
-      ],
-    );
-  } catch (e) {
-    messenger.showSnackBar(SnackBar(content: Text('Save dialog failed: $e')));
-    return;
-  }
-  if (location == null) return;
-
   try {
     final db = await ref.read(databaseServiceProvider.future);
     final readings = await db.getReadingsForSession(session.id);
-    final data = SessionExportData(session, readings);
+    final markers = await db.getMarkersForSession(session.id);
+    final data = SessionExportData(session, readings, markers);
 
     final Uint8List bytes = format == 'csv'
         ? buildSessionCsv(data)
         : await compute(buildSessionXlsx, data);
 
-    await File(location.path).writeAsBytes(bytes, flush: true);
+    final savedTo = await saveExportBytes(
+      suggestedName: suggestedFileName(session, format),
+      extension: format,
+      bytes: bytes,
+    );
+    if (savedTo == null) return; // cancelled
 
     messenger.showSnackBar(
       SnackBar(
-        content: Text('Exported ${readings.length} readings to ${location.path}'),
+        content: Text('Exported ${readings.length} readings to $savedTo'),
       ),
     );
   } catch (e) {

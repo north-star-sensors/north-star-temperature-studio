@@ -6,7 +6,7 @@ part of 'recording_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$recordingServiceHash() => r'fc24258c5f0298db8ae4472af2b79e754776c71b';
+String _$recordingServiceHash() => r'dff6dfe1bed4f1a7d41249e262f743475eb9a75d';
 
 /// See also [RecordingService].
 @ProviderFor(RecordingService)

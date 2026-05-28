@@ -1,24 +1,27 @@
-import 'package:isar/isar.dart';
+// Plain, storage-agnostic domain models.
+//
+// These deliberately carry no Isar annotations so they compile on every
+// target (Isar 3 cannot compile to web). The native Database backend maps
+// them to/from Isar collections; the web backend keeps them in memory.
 
-part 'measurement_models.g.dart';
-
-@collection
 class RecordingSession {
-  Id id = Isar.autoIncrement;
-
+  int id = 0;
   late DateTime startTime;
-
   String? note;
 }
 
-@collection
 class TemperatureReading {
-  Id id = Isar.autoIncrement;
-
-  @Index(composite: [CompositeIndex('timestamp')])
+  int id = 0;
   late int sessionId;
-
   late DateTime timestamp;
-
   late double value;
+}
+
+/// A user-dropped marker annotating a moment during a recording session
+/// (e.g. "touched", "ice", "breath"). Exports attach it to the timeline.
+class SessionMarker {
+  int id = 0;
+  late int sessionId;
+  late DateTime timestamp;
+  late String label;
 }

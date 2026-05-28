@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_soloud/flutter_soloud.dart' show WaveForm;
 import 'package:temperature_studio/src/features/algorithm_lab/state/algorithm_lab_controller.dart';
+import 'package:temperature_studio/src/features/theremin/audio/scale_quantizer.dart';
 import 'package:temperature_studio/src/features/theremin/audio/theremin_audio_controller.dart';
 import 'package:temperature_studio/src/features/theremin/ui/theremin_painter.dart';
+
+const Map<WaveForm, String> _waveformLabels = {
+  WaveForm.sin: 'Sine',
+  WaveForm.triangle: 'Triangle',
+  WaveForm.saw: 'Saw',
+  WaveForm.square: 'Square',
+};
 
 class ThereminPage extends ConsumerStatefulWidget {
   const ThereminPage({super.key});
@@ -69,19 +78,79 @@ class _ThereminPageState extends ConsumerState<ThereminPage>
           ),
         ],
       ),
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          return CustomPaint(
-            painter: ThereminPainter(
-              pitchHz: _audio.currentPitchHz,
-              pitchNorm: pitchNorm,
-              volumeNorm: _audio.currentVolume,
-              pitchMinHz: config.pitchMinHz,
-              pitchMaxHz: config.pitchMaxHz,
+      body: Column(
+        children: [
+          Expanded(
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return CustomPaint(
+                  painter: ThereminPainter(
+                    pitchHz: _audio.currentPitchHz,
+                    pitchNorm: pitchNorm,
+                    volumeNorm: _audio.currentVolume,
+                    pitchMinHz: config.pitchMinHz,
+                    pitchMaxHz: config.pitchMaxHz,
+                  ),
+                  size: Size(constraints.maxWidth, constraints.maxHeight),
+                );
+              },
             ),
-            size: Size(constraints.maxWidth, constraints.maxHeight),
-          );
-        },
+          ),
+          _buildControlBar(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildControlBar() {
+    return Container(
+      color: const Color(0xFF14141F),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      child: SafeArea(
+        top: false,
+        child: Row(
+          children: [
+            const Icon(Icons.piano, color: Colors.white70, size: 20),
+            const SizedBox(width: 8),
+            Expanded(
+              child: DropdownButton<ThereminScale>(
+                value: _audio.scale,
+                isExpanded: true,
+                dropdownColor: const Color(0xFF1E1E2C),
+                style: const TextStyle(color: Colors.white),
+                underline: const SizedBox.shrink(),
+                items: [
+                  for (final scale in ThereminScale.values)
+                    DropdownMenuItem(value: scale, child: Text(scale.label)),
+                ],
+                onChanged: (scale) {
+                  if (scale != null) setState(() => _audio.setScale(scale));
+                },
+              ),
+            ),
+            const SizedBox(width: 16),
+            const Icon(Icons.graphic_eq, color: Colors.white70, size: 20),
+            const SizedBox(width: 8),
+            Expanded(
+              child: DropdownButton<WaveForm>(
+                value: _audio.waveform,
+                isExpanded: true,
+                dropdownColor: const Color(0xFF1E1E2C),
+                style: const TextStyle(color: Colors.white),
+                underline: const SizedBox.shrink(),
+                items: [
+                  for (final entry in _waveformLabels.entries)
+                    DropdownMenuItem(value: entry.key, child: Text(entry.value)),
+                ],
+                onChanged: (waveform) {
+                  if (waveform != null) {
+                    setState(() => _audio.setWaveform(waveform));
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

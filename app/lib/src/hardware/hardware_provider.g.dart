@@ -6,7 +6,7 @@ part of 'hardware_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$serialHardwareHash() => r'61d1b1727453df1e835a2462e03db03c2516c232';
+String _$serialHardwareHash() => r'773ad85c82ed354edd260ccdc85429af3bfdcc8d';
 
 /// See also [serialHardware].
 @ProviderFor(serialHardware)

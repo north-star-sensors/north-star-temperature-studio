@@ -2,12 +2,12 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:isar/isar.dart';
-import 'package:temperature_studio/src/database/database_service.dart';
+import 'package:temperature_studio/src/database/native/isar_database.dart';
 import 'package:temperature_studio/src/database/models/measurement_models.dart';
 
 void main() {
   late Directory tempDir;
-  late DatabaseService databaseService;
+  late IsarDatabase databaseService;
   late Isar isar;
 
   setUp(() async {
@@ -19,8 +19,8 @@ void main() {
 
     // Initialize Isar
     // We use the static method we created, passing the temp path
-    isar = await DatabaseService.openIsar(tempDir.path);
-    databaseService = DatabaseService(isar);
+    isar = await IsarDatabase.openIsar(tempDir.path);
+    databaseService = IsarDatabase(isar);
   });
 
   tearDown(() async {

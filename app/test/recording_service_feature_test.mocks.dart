@@ -3,15 +3,14 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i3;
 
-import 'package:isar/isar.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:temperature_studio/src/database/database_service.dart' as _i3;
+import 'package:temperature_studio/src/database/database_service.dart' as _i2;
 import 'package:temperature_studio/src/database/models/measurement_models.dart'
-    as _i5;
+    as _i4;
 import 'package:temperature_studio/src/hardware/serial_hardware_interface.dart'
-    as _i6;
+    as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,119 +25,96 @@ import 'package:temperature_studio/src/hardware/serial_hardware_interface.dart'
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeIsar_0 extends _i1.SmartFake implements _i2.Isar {
-  _FakeIsar_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-/// A class which mocks [DatabaseService].
+/// A class which mocks [Database].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDatabaseService extends _i1.Mock implements _i3.DatabaseService {
+class MockDatabase extends _i1.Mock implements _i2.Database {
   @override
-  _i2.Isar get isar => (super.noSuchMethod(
-        Invocation.getter(#isar),
-        returnValue: _FakeIsar_0(
-          this,
-          Invocation.getter(#isar),
-        ),
-        returnValueForMissingStub: _FakeIsar_0(
-          this,
-          Invocation.getter(#isar),
-        ),
-      ) as _i2.Isar);
-
-  @override
-  _i4.Future<int> createSession(_i5.RecordingSession? session) =>
+  _i3.Future<int> createSession(_i4.RecordingSession? session) =>
       (super.noSuchMethod(
         Invocation.method(
           #createSession,
           [session],
         ),
-        returnValue: _i4.Future<int>.value(0),
-        returnValueForMissingStub: _i4.Future<int>.value(0),
-      ) as _i4.Future<int>);
+        returnValue: _i3.Future<int>.value(0),
+        returnValueForMissingStub: _i3.Future<int>.value(0),
+      ) as _i3.Future<int>);
 
   @override
-  _i4.Future<_i5.RecordingSession?> getSession(int? id) => (super.noSuchMethod(
+  _i3.Future<_i4.RecordingSession?> getSession(int? id) => (super.noSuchMethod(
         Invocation.method(
           #getSession,
           [id],
         ),
-        returnValue: _i4.Future<_i5.RecordingSession?>.value(),
-        returnValueForMissingStub: _i4.Future<_i5.RecordingSession?>.value(),
-      ) as _i4.Future<_i5.RecordingSession?>);
+        returnValue: _i3.Future<_i4.RecordingSession?>.value(),
+        returnValueForMissingStub: _i3.Future<_i4.RecordingSession?>.value(),
+      ) as _i3.Future<_i4.RecordingSession?>);
 
   @override
-  _i4.Future<List<_i5.RecordingSession>> getAllSessions() =>
+  _i3.Future<List<_i4.RecordingSession>> getAllSessions() =>
       (super.noSuchMethod(
         Invocation.method(
           #getAllSessions,
           [],
         ),
-        returnValue: _i4.Future<List<_i5.RecordingSession>>.value(
-            <_i5.RecordingSession>[]),
-        returnValueForMissingStub: _i4.Future<List<_i5.RecordingSession>>.value(
-            <_i5.RecordingSession>[]),
-      ) as _i4.Future<List<_i5.RecordingSession>>);
+        returnValue: _i3.Future<List<_i4.RecordingSession>>.value(
+            <_i4.RecordingSession>[]),
+        returnValueForMissingStub: _i3.Future<List<_i4.RecordingSession>>.value(
+            <_i4.RecordingSession>[]),
+      ) as _i3.Future<List<_i4.RecordingSession>>);
 
   @override
-  _i4.Future<List<_i5.RecordingSession>> getAllSessionsNewestFirst() =>
+  _i3.Future<List<_i4.RecordingSession>> getAllSessionsNewestFirst() =>
       (super.noSuchMethod(
         Invocation.method(
           #getAllSessionsNewestFirst,
           [],
         ),
-        returnValue: _i4.Future<List<_i5.RecordingSession>>.value(
-            <_i5.RecordingSession>[]),
-        returnValueForMissingStub: _i4.Future<List<_i5.RecordingSession>>.value(
-            <_i5.RecordingSession>[]),
-      ) as _i4.Future<List<_i5.RecordingSession>>);
+        returnValue: _i3.Future<List<_i4.RecordingSession>>.value(
+            <_i4.RecordingSession>[]),
+        returnValueForMissingStub: _i3.Future<List<_i4.RecordingSession>>.value(
+            <_i4.RecordingSession>[]),
+      ) as _i3.Future<List<_i4.RecordingSession>>);
 
   @override
-  _i4.Future<void> saveReadings(List<_i5.TemperatureReading>? readings) =>
+  _i3.Future<void> saveReadings(List<_i4.TemperatureReading>? readings) =>
       (super.noSuchMethod(
         Invocation.method(
           #saveReadings,
           [readings],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 
   @override
-  _i4.Future<List<_i5.TemperatureReading>> getReadingsForSession(
+  _i3.Future<List<_i4.TemperatureReading>> getReadingsForSession(
           int? sessionId) =>
       (super.noSuchMethod(
         Invocation.method(
           #getReadingsForSession,
           [sessionId],
         ),
-        returnValue: _i4.Future<List<_i5.TemperatureReading>>.value(
-            <_i5.TemperatureReading>[]),
+        returnValue: _i3.Future<List<_i4.TemperatureReading>>.value(
+            <_i4.TemperatureReading>[]),
         returnValueForMissingStub:
-            _i4.Future<List<_i5.TemperatureReading>>.value(
-                <_i5.TemperatureReading>[]),
-      ) as _i4.Future<List<_i5.TemperatureReading>>);
+            _i3.Future<List<_i4.TemperatureReading>>.value(
+                <_i4.TemperatureReading>[]),
+      ) as _i3.Future<List<_i4.TemperatureReading>>);
 
   @override
-  _i4.Future<int> countReadingsForSession(int? sessionId) =>
+  _i3.Future<int> countReadingsForSession(int? sessionId) =>
       (super.noSuchMethod(
         Invocation.method(
           #countReadingsForSession,
           [sessionId],
         ),
-        returnValue: _i4.Future<int>.value(0),
-        returnValueForMissingStub: _i4.Future<int>.value(0),
-      ) as _i4.Future<int>);
+        returnValue: _i3.Future<int>.value(0),
+        returnValueForMissingStub: _i3.Future<int>.value(0),
+      ) as _i3.Future<int>);
 
   @override
-  _i4.Future<List<_i5.TemperatureReading>> getReadingsInRange(
+  _i3.Future<List<_i4.TemperatureReading>> getReadingsInRange(
     int? sessionId,
     DateTime? start,
     DateTime? end,
@@ -152,59 +128,92 @@ class MockDatabaseService extends _i1.Mock implements _i3.DatabaseService {
             end,
           ],
         ),
-        returnValue: _i4.Future<List<_i5.TemperatureReading>>.value(
-            <_i5.TemperatureReading>[]),
+        returnValue: _i3.Future<List<_i4.TemperatureReading>>.value(
+            <_i4.TemperatureReading>[]),
         returnValueForMissingStub:
-            _i4.Future<List<_i5.TemperatureReading>>.value(
-                <_i5.TemperatureReading>[]),
-      ) as _i4.Future<List<_i5.TemperatureReading>>);
+            _i3.Future<List<_i4.TemperatureReading>>.value(
+                <_i4.TemperatureReading>[]),
+      ) as _i3.Future<List<_i4.TemperatureReading>>);
+
+  @override
+  _i3.Future<int> saveMarker(_i4.SessionMarker? marker) => (super.noSuchMethod(
+        Invocation.method(
+          #saveMarker,
+          [marker],
+        ),
+        returnValue: _i3.Future<int>.value(0),
+        returnValueForMissingStub: _i3.Future<int>.value(0),
+      ) as _i3.Future<int>);
+
+  @override
+  _i3.Future<List<_i4.SessionMarker>> getMarkersForSession(int? sessionId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getMarkersForSession,
+          [sessionId],
+        ),
+        returnValue:
+            _i3.Future<List<_i4.SessionMarker>>.value(<_i4.SessionMarker>[]),
+        returnValueForMissingStub:
+            _i3.Future<List<_i4.SessionMarker>>.value(<_i4.SessionMarker>[]),
+      ) as _i3.Future<List<_i4.SessionMarker>>);
+
+  @override
+  _i3.Future<int> countMarkersForSession(int? sessionId) => (super.noSuchMethod(
+        Invocation.method(
+          #countMarkersForSession,
+          [sessionId],
+        ),
+        returnValue: _i3.Future<int>.value(0),
+        returnValueForMissingStub: _i3.Future<int>.value(0),
+      ) as _i3.Future<int>);
 }
 
 /// A class which mocks [SerialHardwareInterface].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSerialHardwareInterface extends _i1.Mock
-    implements _i6.SerialHardwareInterface {
+    implements _i5.SerialHardwareInterface {
   @override
-  _i4.Future<List<String>> getDevices() => (super.noSuchMethod(
+  _i3.Future<List<String>> getDevices() => (super.noSuchMethod(
         Invocation.method(
           #getDevices,
           [],
         ),
-        returnValue: _i4.Future<List<String>>.value(<String>[]),
-        returnValueForMissingStub: _i4.Future<List<String>>.value(<String>[]),
-      ) as _i4.Future<List<String>>);
+        returnValue: _i3.Future<List<String>>.value(<String>[]),
+        returnValueForMissingStub: _i3.Future<List<String>>.value(<String>[]),
+      ) as _i3.Future<List<String>>);
 
   @override
-  _i4.Future<_i4.Stream<List<int>>> connect(String? devicePath) =>
+  _i3.Future<_i3.Stream<List<int>>> connect(String? devicePath) =>
       (super.noSuchMethod(
         Invocation.method(
           #connect,
           [devicePath],
         ),
-        returnValue: _i4.Future<_i4.Stream<List<int>>>.value(
-            _i4.Stream<List<int>>.empty()),
-        returnValueForMissingStub: _i4.Future<_i4.Stream<List<int>>>.value(
-            _i4.Stream<List<int>>.empty()),
-      ) as _i4.Future<_i4.Stream<List<int>>>);
+        returnValue: _i3.Future<_i3.Stream<List<int>>>.value(
+            _i3.Stream<List<int>>.empty()),
+        returnValueForMissingStub: _i3.Future<_i3.Stream<List<int>>>.value(
+            _i3.Stream<List<int>>.empty()),
+      ) as _i3.Future<_i3.Stream<List<int>>>);
 
   @override
-  _i4.Future<void> disconnect() => (super.noSuchMethod(
+  _i3.Future<void> disconnect() => (super.noSuchMethod(
         Invocation.method(
           #disconnect,
           [],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 
   @override
-  _i4.Future<void> sendData(List<int>? data) => (super.noSuchMethod(
+  _i3.Future<void> sendData(List<int>? data) => (super.noSuchMethod(
         Invocation.method(
           #sendData,
           [data],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

@@ -2,6 +2,11 @@
 
 A multi-platform Flutter app for capturing, analyzing, and exporting temperature sensor data. Built around a streaming algorithm lab, session recording with on-device storage, and live charting; works against simulated sources or USB / serial hardware on Windows, macOS, Linux, Android, and the web.
 
+### Platform notes
+
+- **Desktop (Windows/macOS/Linux) & Android** — full support: USB/serial hardware and on-device (Isar) recording storage.
+- **Web** — runs on **Chromium-based desktop browsers (Chrome, Edge, Opera)**. Live hardware uses the browser's [Web Serial API](https://developer.mozilla.org/docs/Web/API/Web_Serial_API) (no extension needed); you grant a port via the browser's picker on connect. Firefox and Safari don't implement Web Serial, so they're simulator-only. Recording storage on the web is **in-memory** (Isar can't compile to web), so sessions don't persist across reloads — exports still work.
+
 ## Project layout
 
 ```

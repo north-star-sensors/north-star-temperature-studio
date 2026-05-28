@@ -4,16 +4,10 @@ import 'package:usb_serial/usb_serial.dart';
 import 'serial_hardware_interface.dart';
 
 class SerialAndroidImpl implements SerialHardwareInterface {
-  static const int _allowedVid = 1155;
-  static const Set<int> _allowedPids = {22336, 42346};
-
   UsbPort? _port;
 
-  bool _isAllowedDevice(UsbDevice device) {
-    final vid = device.vid;
-    final pid = device.pid;
-    return vid == _allowedVid && pid != null && _allowedPids.contains(pid);
-  }
+  bool _isAllowedDevice(UsbDevice device) =>
+      SerialDeviceFilter.isAllowed(device.vid, device.pid);
 
   @override
   Future<List<String>> getDevices() async {

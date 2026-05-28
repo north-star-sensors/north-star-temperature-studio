@@ -54,11 +54,25 @@ For Android hardware validation (USB serial):
 3. Confirm the device appears, connect, and verify incoming temperature values.
 4. Start/stop recording and verify data is stored in session history.
 
-### Web
+### Web (Chrome / Edge / Opera desktop)
 
 ```
-flutter run -d chrome
+flutter run -d chrome     # or: flutter build web
 ```
+
+Live hardware uses the browser's **Web Serial API** — no extension required. The
+device dropdown shows a "Choose serial port…" entry; tapping **Connect** opens
+the browser's native port picker (filtered to the sensor's USB vendor id). This
+gesture-driven flow replaces desktop's silent auto-scan, because the web can't
+enumerate serial ports without explicit user consent.
+
+Notes:
+
+- Web Serial is Chromium-only (Chrome, Edge, Opera) and requires a secure
+  context (HTTPS or `localhost`). Firefox/Safari fall back to simulator + the
+  games/theremin.
+- Recording storage is **in-memory** on the web (Isar is native-only), so
+  sessions reset on reload. CSV/XLSX export downloads through the browser.
 
 ## Wireless Debugging (Android)
 

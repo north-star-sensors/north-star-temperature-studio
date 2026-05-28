@@ -39,3 +39,8 @@ jobs:
 
       - name: Test
         run: flutter test
+
+      # Guards against regressing web compatibility (e.g. importing dart:io or
+      # an FFI-only package outside a conditional import).
+      - name: Build web
+        run: flutter build web

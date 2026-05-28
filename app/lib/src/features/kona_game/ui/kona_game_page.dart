@@ -63,12 +63,11 @@ class _KonaGamePageState extends ConsumerState<KonaGamePage>
     setState(() {
       _gameState = _engine.update(_gameState, dt, _canvasWidth);
     });
-    // Check if game just ended
+    // Check if game just ended. The engine already folds the run's score into
+    // highScore, so persist that (a no-op when it wasn't a new record).
     if (_gameState.phase == GamePhase.gameOver) {
       _ticker.stop();
-      if (_gameState.score >= _gameState.highScore) {
-        _saveHighScore(_gameState.highScore);
-      }
+      _saveHighScore(_gameState.highScore);
     }
   }
 

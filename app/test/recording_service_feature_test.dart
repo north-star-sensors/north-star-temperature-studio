@@ -10,18 +10,18 @@ import 'package:temperature_studio/src/hardware/hardware_provider.dart';
 import 'package:temperature_studio/src/hardware/serial_hardware_interface.dart';
 
 @GenerateNiceMocks([
-  MockSpec<DatabaseService>(),
+  MockSpec<Database>(),
   MockSpec<SerialHardwareInterface>(),
 ])
 import 'recording_service_feature_test.mocks.dart';
 
 void main() {
-  late MockDatabaseService mockDb;
+  late MockDatabase mockDb;
   late MockSerialHardwareInterface mockHardware;
   late ProviderContainer container;
 
   setUp(() {
-    mockDb = MockDatabaseService();
+    mockDb = MockDatabase();
     mockHardware = MockSerialHardwareInterface();
 
     container = ProviderContainer(
