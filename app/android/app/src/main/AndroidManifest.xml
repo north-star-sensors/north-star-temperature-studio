@@ -1,5 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <uses-feature android:name="android.hardware.usb.host" />
+    <!-- The USB serial sensor needs USB host mode, but the app is fully usable
+         without it (theremin, mini-games, and viewing/exporting saved sessions),
+         so it is optional. required="false" keeps the app installable on — and
+         visible in the Play Store to — phones that don't report USB-host support. -->
+    <uses-feature android:name="android.hardware.usb.host" android:required="false" />
     <application
         android:label="North Star Temperature Studio"
         android:name="${applicationName}"
